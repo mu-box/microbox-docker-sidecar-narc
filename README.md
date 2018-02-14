@@ -1,6 +1,5 @@
 # Sidecar-narc ![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-sidecar-narc.svg)
 
-
 example payload:
 ```
 {

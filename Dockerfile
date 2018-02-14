@@ -11,8 +11,8 @@ RUN dpkg -i /var/tmp/narc_0.2.2-1_amd64.deb && rm /var/tmp/narc_0.2.2-1_amd64.de
 
 RUN mkdir -p /var/podinit
 
-COPY configure /usr/bin/configure
+COPY configure /opt/nanobox/hooks/configure
 
-COPY start /usr/bin/start
+COPY start /opt/nanobox/hooks/start
 
-CMD [ "/usr/bin/start" ]
+CMD [ "/opt/nanobox/hooks/start" ]
