@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while [ ! -f /var/podinit/ready ]
+do
+  /bin/sleep 1
+done
+
+exec /usr/bin/narcd /etc/narc.conf

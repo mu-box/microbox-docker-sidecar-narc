@@ -1,0 +1,71 @@
+#!/bin/bash
+
+uid=$(echo $1 | jq -r '.uid')
+logvac=$(echo $1 | jq -r '.uid')
+logfiles=$(echo $1 | jq '.logfiles|length')
+lognum=0
+
+cat > /etc/narc.conf <<END
+###########
+# general #
+###########
+
+daemonize no
+pidfile /var/run/narc.pid
+
+###########
+# logging #
+###########
+
+loglevel warning
+# logfile /var/log/narc.log
+syslog-enabled no
+syslog-ident narc
+syslog-facility local0
+
+##########
+# server #
+##########
+
+# remote syslog 
+remote-host ${logvac}
+remote-port 514
+remote-proto udp
+
+# max server connect attempts
+max-connect-attempts 12
+
+# millisecond delay between attempts
+connect-retry-delay 5000
+
+###########
+# streams #
+###########
+
+# max file open attempts
+max-open-attempts 12
+
+# millisecond delay between attempts
+open-retry-delay 5000
+
+# identifier to prefix all messages with
+stream-id ${uid}
+
+# syslog facility for streams
+stream-facility user
+
+# syslog priority for streams
+stream-priority error
+
+# log streams
+END
+
+while [[ $lognum -lt $logfiles ]]
+do
+  prefix=$(echo $1 | jq -r '.logfiles[0].prefix')
+  path=$(echo $1 | jq -r '.logfiles[0].path')
+  echo "stream ${prefix} ${path}" >> /etc/narc.conf
+  ((lognum++))
+done
+
+touch /var/podinit/ready
