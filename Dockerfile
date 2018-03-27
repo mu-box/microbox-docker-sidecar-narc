@@ -5,7 +5,7 @@ RUN apt-get update -qq && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/*
 
-ADD https://d1qjolj82nwh57.cloudfront.net/deb/narc_0.2.2-1_amd64.deb /var/tmp/narc_0.2.2-1_amd64.deb
+ADD https://s3.amazonaws.com/nanopack.nanobox.io/deb/narc_0.2.2-1_amd64.deb /var/tmp/narc_0.2.2-1_amd64.deb
 
 RUN dpkg -i /var/tmp/narc_0.2.2-1_amd64.deb && rm /var/tmp/narc_0.2.2-1_amd64.deb
 

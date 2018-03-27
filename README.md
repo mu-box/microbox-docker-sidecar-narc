@@ -1,4 +1,4 @@
-# Sidecar-narc [![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-sidecar-narc.svg)](https://travis-ci.org/nanobox-io/nanobox-docker-sidecar-narc/)
+# Sidecar-narc [![Build Status Image](https://api.travis-ci.org/nanobox-io/nanobox-docker-sidecar-narc.svg?branch=master)](https://travis-ci.org/nanobox-io/nanobox-docker-sidecar-narc/)
 
 example payload:
 ```
