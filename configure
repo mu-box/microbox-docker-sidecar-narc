@@ -1,7 +1,7 @@
 #!/bin/bash
 
 uid=$(echo $1 | jq -r '.uid')
-logvac=$(echo $1 | jq -r '.uid')
+logvac=$(echo $1 | jq -r '.logvac')
 logfiles=$(echo $1 | jq '.logfiles|length')
 lognum=0
 
