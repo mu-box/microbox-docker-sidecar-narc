@@ -18,7 +18,7 @@ pidfile /var/run/narc.pid
 ###########
 
 loglevel warning
-# logfile /var/log/narc.log
+logfile /var/log/narc.log
 syslog-enabled no
 syslog-ident narc
 syslog-facility local0
