@@ -62,8 +62,8 @@ END
 
 while [[ $lognum -lt $logfiles ]]
 do
-  prefix=$(echo $1 | jq -r '.logfiles[0].prefix')
-  path=$(echo $1 | jq -r '.logfiles[0].path')
+  prefix=$(echo $1 | jq -r ".logfiles[$lognum].prefix")
+  path=$(echo $1 | jq -r ".logfiles[$lognum].path")
   echo "stream ${prefix} ${path}" >> /etc/narc.conf
   ((lognum++))
 done
