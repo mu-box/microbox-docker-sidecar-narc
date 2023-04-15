@@ -5,14 +5,14 @@ RUN apt-get update -qq && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/*
 
-ADD https://s3.amazonaws.com/nanopack.nanobox.io/deb/narc_0.2.2-1_amd64.deb /var/tmp/narc_0.2.2-1_amd64.deb
+ADD https://s3.amazonaws.com/tools.microbox.cloud/deb/narc_0.2.2-1_amd64.deb /var/tmp/narc_0.2.2-1_amd64.deb
 
 RUN dpkg -i /var/tmp/narc_0.2.2-1_amd64.deb && rm /var/tmp/narc_0.2.2-1_amd64.deb
 
 RUN mkdir -p /var/podinit
 
-COPY configure /opt/nanobox/hooks/configure
+COPY configure /opt/microbox/hooks/configure
 
-COPY start /opt/nanobox/hooks/start
+COPY start /opt/microbox/hooks/start
 
-CMD [ "/opt/nanobox/hooks/start" ]
+CMD [ "/opt/microbox/hooks/start" ]

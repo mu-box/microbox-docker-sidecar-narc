@@ -7,7 +7,7 @@ before_install:
   - sudo apt-get -y install python-pip
   - sudo pip install docker==2.7.0 docker-squash
 
-script: docker build -t nanobox/pod-sidecar-narc -f Dockerfile .
+script: docker build -t mubox/pod-sidecar-narc -f Dockerfile .
 
 after_success:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
@@ -16,7 +16,7 @@ after_success:
   - docker-squash -t ${NAMESPACE}/pod-sidecar-narc:squashed --tmp-dir /var/tmp/squasher ${NAMESPACE}/pod-sidecar-narc
   - docker tag ${NAMESPACE}/pod-sidecar-narc:squashed ${NAMESPACE}/pod-sidecar-narc:beta;
   - docker push ${REMOTE}${NAMESPACE}/pod-sidecar-narc:beta;
-  - 'if [ "$BRANCH" == "master" ]; then
+  - 'if [ "$BRANCH" == "main" ]; then
     docker tag ${NAMESPACE}/pod-sidecar-narc:squashed ${NAMESPACE}/pod-sidecar-narc:latest;
     docker push ${REMOTE}${NAMESPACE}/pod-sidecar-narc:latest;
     else
